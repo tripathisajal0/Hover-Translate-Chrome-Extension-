@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Hover Translator",
+  "version": "1.0",
+  "description": "Translate text to your preferred language on hover or using keyboard shortcuts.",
+  "permissions": ["activeTab", "storage", "contextMenus"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "commands": {
+    "translate-text": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+R"   
+      },
+      "description": "Translate selected text"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["contentScript.js"]
+    }
+  ]
+}

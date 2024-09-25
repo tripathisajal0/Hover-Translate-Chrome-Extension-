@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h3>Select Language</h3>
+    <select id="language">
+      <option value="hi">Hindi</option>
+      <option value="es">Spanish</option>
+      <option value="fr">French</option>
+    </select>
+    <button id="save">Save</button>
+
+    <script>
+      document.getElementById('save').addEventListener('click', function() {
+        const language = document.getElementById('language').value;
+        chrome.storage.sync.set({ preferredLanguage: language }, function() {
+          alert('Language saved successfully.');
+        });
+      });
+
+      chrome.storage.sync.get('preferredLanguage', function(data) {
+        if (data.preferredLanguage) {
+          document.getElementById('language').value = data.preferredLanguage;
+        }
+      });
+    </script>
+  </body>
+</html>
